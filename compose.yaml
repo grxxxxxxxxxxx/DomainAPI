@@ -1,0 +1,7 @@
+﻿services:
+  bookingproject:
+    image: bookingproject
+    build:
+      context: .
+      dockerfile: BookingProject/Dockerfile
+

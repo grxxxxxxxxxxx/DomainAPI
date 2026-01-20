@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookingProject", "BookingProject\BookingProject.csproj", "{329229B4-C32E-40C4-85C4-E52DAAF6C78F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{59519040-F700-4499-9D49-17DE757F3FA7}"
+	ProjectSection(SolutionItems) = preProject
+		compose.yaml = compose.yaml
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookingTests", "BookingTests\BookingTests.csproj", "{EF78FDE6-46C2-4B2A-9ECA-BFC6DC7C723A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{329229B4-C32E-40C4-85C4-E52DAAF6C78F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{329229B4-C32E-40C4-85C4-E52DAAF6C78F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{329229B4-C32E-40C4-85C4-E52DAAF6C78F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{329229B4-C32E-40C4-85C4-E52DAAF6C78F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF78FDE6-46C2-4B2A-9ECA-BFC6DC7C723A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF78FDE6-46C2-4B2A-9ECA-BFC6DC7C723A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF78FDE6-46C2-4B2A-9ECA-BFC6DC7C723A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF78FDE6-46C2-4B2A-9ECA-BFC6DC7C723A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
