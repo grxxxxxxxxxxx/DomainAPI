@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "PZtAOtuyna4=",
+  "dgSpecHash": "nLYu5RNcRuA=",
   "success": true,
-  "projectFilePath": "/Users/grxxx/RiderProjects/BookingProject/BookingProject/BookingProject.csproj",
+  "projectFilePath": "/Users/grxxx/RiderProjects/DomainProject/BookingProject/BookingProject.csproj",
   "expectedPackageFiles": [
     "/Users/grxxx/.nuget/packages/bcrypt.net-next/4.0.3/bcrypt.net-next.4.0.3.nupkg.sha512",
     "/Users/grxxx/.nuget/packages/entityframework/6.5.1/entityframework.6.5.1.nupkg.sha512",
@@ -86,9 +86,9 @@
       "code": "NU1608",
       "level": "Warning",
       "message": "Detected package version outside of dependency constraint: FluentValidation.ValidatorAttribute 8.6.1 requires FluentValidation (>= 8.6.1 && < 9.0.0) but version FluentValidation 12.1.1 was resolved.",
-      "projectPath": "/Users/grxxx/RiderProjects/BookingProject/BookingProject/BookingProject.csproj",
+      "projectPath": "/Users/grxxx/RiderProjects/DomainProject/BookingProject/BookingProject.csproj",
       "warningLevel": 1,
-      "filePath": "/Users/grxxx/RiderProjects/BookingProject/BookingProject/BookingProject.csproj",
+      "filePath": "/Users/grxxx/RiderProjects/DomainProject/BookingProject/BookingProject.csproj",
       "libraryId": "FluentValidation",
       "targetGraphs": [
         "net10.0"
@@ -98,9 +98,9 @@
       "code": "NU1608",
       "level": "Warning",
       "message": "Detected package version outside of dependency constraint: FluentValidation.WebApi 8.6.1 requires FluentValidation (>= 8.6.1 && < 9.0.0) but version FluentValidation 12.1.1 was resolved.",
-      "projectPath": "/Users/grxxx/RiderProjects/BookingProject/BookingProject/BookingProject.csproj",
+      "projectPath": "/Users/grxxx/RiderProjects/DomainProject/BookingProject/BookingProject.csproj",
       "warningLevel": 1,
-      "filePath": "/Users/grxxx/RiderProjects/BookingProject/BookingProject/BookingProject.csproj",
+      "filePath": "/Users/grxxx/RiderProjects/DomainProject/BookingProject/BookingProject.csproj",
       "libraryId": "FluentValidation",
       "targetGraphs": [
         "net10.0"
@@ -110,9 +110,9 @@
       "code": "NU1701",
       "level": "Warning",
       "message": "Package 'FluentValidation.WebApi 8.6.1' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net10.0'. This package may not be fully compatible with your project.",
-      "projectPath": "/Users/grxxx/RiderProjects/BookingProject/BookingProject/BookingProject.csproj",
+      "projectPath": "/Users/grxxx/RiderProjects/DomainProject/BookingProject/BookingProject.csproj",
       "warningLevel": 1,
-      "filePath": "/Users/grxxx/RiderProjects/BookingProject/BookingProject/BookingProject.csproj",
+      "filePath": "/Users/grxxx/RiderProjects/DomainProject/BookingProject/BookingProject.csproj",
       "libraryId": "FluentValidation.WebApi",
       "targetGraphs": [
         "net10.0"
@@ -122,9 +122,9 @@
       "code": "NU1701",
       "level": "Warning",
       "message": "Package 'Microsoft.AspNet.WebApi.Core 5.2.4' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net10.0'. This package may not be fully compatible with your project.",
-      "projectPath": "/Users/grxxx/RiderProjects/BookingProject/BookingProject/BookingProject.csproj",
+      "projectPath": "/Users/grxxx/RiderProjects/DomainProject/BookingProject/BookingProject.csproj",
       "warningLevel": 1,
-      "filePath": "/Users/grxxx/RiderProjects/BookingProject/BookingProject/BookingProject.csproj",
+      "filePath": "/Users/grxxx/RiderProjects/DomainProject/BookingProject/BookingProject.csproj",
       "libraryId": "Microsoft.AspNet.WebApi.Core",
       "targetGraphs": [
         "net10.0"

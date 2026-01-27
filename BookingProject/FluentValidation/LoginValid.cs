@@ -1,11 +1,13 @@
+using BookingProject.DTOs;
 using BookingProject.Models;
+using BookingProject.Services;
 using FluentValidation;
 
 namespace BookingProject.FluentValidation;
 
-public class LoginValid : AbstractValidator<LoginRequest>
+public class LoginDtoValidate : AbstractValidator<LoginDto>
 {
-    public LoginValid()
+    public LoginDtoValidate()
     {
         RuleFor(x => x.Email)
             .NotNull()

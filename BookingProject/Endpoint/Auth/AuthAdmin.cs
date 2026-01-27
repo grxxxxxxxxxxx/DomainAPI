@@ -1,183 +1,80 @@
-using BookingProject.Data;
-using BookingProject.Models;
-using Microsoft.EntityFrameworkCore;
-using FluentValidation;
+using BookingProject.Services;
+using BookingProject.DTOs;
+using Microsoft.AspNetCore.Mvc;
 
-namespace BookingProject.Endpoint.AuthAdmin;
+namespace BookingProject.Endpoint.Auth;
 
 public static class AuthAdmin
 {
-    public static void CreateAdmin(this WebApplication app)
+    public static void MapAuthAdminEndpoint(this WebApplication app)
     {
-        app.MapPost("/api/register/admin"!, async (AppDbContext db,
-            IValidator<User> validator, ILogger<AdminLog> logger , HttpContext httpContext , User user) =>
+        app.MapPost("/api/register/admin"!, async ([FromBody] UsersDto dto ,
+            [FromServices] IUserService registerService) =>
         {
             try
             {
-                logger.LogInformation("Creating an Administrator -> {RemoteIp}" ,
-                    httpContext.Connection.RemoteIpAddress);
-                
-                var validateResult = await validator.ValidateAsync(user);
-                if (!validateResult.IsValid)
-                {
-                    logger.LogWarning("Invalid data for creation -> {RemoteIp}" ,
-                        httpContext.Connection.RemoteIpAddress);
-                    
-                    return Results.BadRequest(validateResult.Errors);
-                }
-                
-                var userNew = await db.Users.FirstOrDefaultAsync(u => u.Email == user.Email);
-                if (userNew != null)
-                {
-                    logger.LogWarning("Admin already exists -> {RemoteIp}" ,
-                        httpContext.Connection.RemoteIpAddress);
-                    
-                    return Results.Problem(); //serilog
-                }
-                
-                user.Role = "Admin";
-                user.Password = BCrypt.Net.BCrypt.HashPassword(user.Password);
-                
-                db.Users.Add(user);
-                await db.SaveChangesAsync();
-                
-                logger.LogInformation("Admin created successfully -> {RemoteIp}" ,
-                    httpContext.Connection.RemoteIpAddress);
-                
-                user.Password = null;
-                return Results.Created($"/api/register/admin/{user.Id}", user);
+                var result = await registerService.RegisterAsync(dto , "Admin");
+
+                return result.IsSuccess
+                    ? Results.Created($"/api/users/{result.Data!.Id}", result.Data)
+                    : Results.BadRequest(new { error = result.Error });
             }
             catch (Exception)
             {
-                logger.LogError("Failed to create admin -> {RemoteIp}" ,
-                    httpContext.Connection.RemoteIpAddress);
-                
                 return Results.Problem();
             }
         }).RequireAuthorization(policy => policy.RequireRole("Admin") );
-
+        
         //Create First Admin
-        app.MapPost("/api/register/admin/first", async (AppDbContext db, IValidator<User> validator
-            , ILogger<AdminLog> logger , HttpContext httpContext , User user) =>
+        app.MapPost("/api/register/admin/first", async ([FromBody] UsersDto dto ,
+            [FromServices] IUserService regitserService) =>
         {
             try
             {
-                logger.LogInformation("Creating the first admin -> {RemoteIp}" ,
-                    httpContext.Connection.RemoteIpAddress);
-                
-                var validatorResult = await validator.ValidateAsync(user);
-                if (!validatorResult.IsValid)
-                {
-                    logger.LogWarning("data has not been validated -> {RemoteIp}" ,
-                        httpContext.Connection.RemoteIpAddress);
-                    
-                    return Results.BadRequest(validatorResult.Errors);
-                }
-                
-                user.Role = "Admin";
-                user.Password = BCrypt.Net.BCrypt.HashPassword(user.Password);
-            
-                db.Users.Add(user);
-                await db.SaveChangesAsync();
-                
-                logger.LogInformation("Admin created successfully -> {RemoteIp}" ,
-                    httpContext.Connection.RemoteIpAddress);
-                
-                user.Password = null; //security moment ;)
-                return Results.Created($"/api/register/admin/{user.Id}", user);
+                var result = await regitserService.RegisterAsync(dto, "Admin");
+
+                return result.IsSuccess
+                    ? Results.Created($"/api/users/admin/first{result.Data!.Id}", result.Data)
+                    : Results.BadRequest(new { error = result.Error });
             }
             catch (Exception)
             {
-                logger.LogError("Failed to create admin -> {RemoteIp}" ,
-                    httpContext.Connection.RemoteIpAddress);
-                
                 return Results.Problem();
             }
         });
-    }
-    public static void DeleteAdmin(this WebApplication app)
-    {
-        app.MapDelete("/api/users/admin/{id}", async (AppDbContext db, Guid id ,
-            ILogger<AdminLog> logger , HttpContext httpContext) =>
+        
+        app.MapDelete("/api/users/admin/{id}", async (Guid id ,
+            [FromServices] IUserService userService) =>
         {
             try
             {
-                logger.LogInformation("Removing an admin -> {RemoteIp}" ,
-                    httpContext.Connection.RemoteIpAddress);
+                var result = await userService.DeleteAsync(id);
                 
-                var adminValid = await db.Users.FindAsync(id);
-                if (adminValid is null)
-                {
-                    logger.LogWarning("Admin not found -> {RemoteIp}" ,
-                        httpContext.Connection.RemoteIpAddress);
-                    return Results.NotFound();
-                }
-
-                db.Users.Remove(adminValid);
-                await db.SaveChangesAsync();
-                
-                logger.LogInformation("Admin successfully removed -> {RemoteIp}" ,
-                    httpContext.Connection.RemoteIpAddress);
-                
-                return Results.Ok();
+                return result.IsSuccess
+                    ? Results.Ok()
+                    : Results.BadRequest();
             }
             catch (Exception)
             {
-                logger.LogError("Failed deleting admin -> {RemoteIp}" ,
-                    httpContext.Connection.RemoteIpAddress);
                 return Results.Problem();
             }
         }).RequireAuthorization(policy => policy.RequireRole("Admin"));
-    }
     
-    public static void PutAdmin(this WebApplication app)
-    {
-        app.MapPut("/api/users/admin/{id}", async (AppDbContext db, IValidator<User> validator,
-            User update, Guid id , ILogger<AdminLog> logger , HttpContext httpContext) =>
+        app.MapPut("/api/users/admin/{id}", async (Guid id ,
+            [FromBody] UsersDto dto ,[FromServices] IUserService userService) =>
         {
             try
             {
-                logger.LogInformation("Updating admin data -> {RemoteIp}" ,
-                    httpContext.Connection.RemoteIpAddress);
-                
-                var validatorResults = await validator.ValidateAsync(update);
-                if (!validatorResults.IsValid)
-                {
-                    logger.LogWarning("Invalid data for update -> {RemoteIp}" ,
-                        httpContext.Connection.RemoteIpAddress);
-                    return Results.BadRequest(validatorResults.Errors);
-                }
-                
-                var user = await db.Users.FindAsync(id);
-                if (user is null)
-                {
-                    logger.LogWarning("Admin not found -> {RemoteIp}" ,
-                        httpContext.Connection.RemoteIpAddress);
-                    return Results.NotFound();
-                }
+                var result = await userService.UpdateAsync(id, dto);
 
-                user!.Email = update.Email;
-                user!.Name = update.Name;
-                
-                update.Password = BCrypt.Net.BCrypt.HashPassword(update.Password);
-                
-                user!.Password = update.Password;
-                user!.Phone = update.Phone;
-
-                await db.SaveChangesAsync();
-                
-                logger.LogInformation("Admin data updated successfully -> {RemoteIp}" ,
-                    httpContext.Connection.RemoteIpAddress);
-                
-                return Results.NoContent();
+                return result.IsSuccess
+                    ? Results.Ok(result.Data)
+                    : Results.BadRequest(new { error = result.Error });
             }
             catch (Exception)
             {
-                logger.LogError("Failed updating data admin -> {RemoteIp}" ,
-                    httpContext.Connection.RemoteIpAddress);
                 return Results.Problem();
             }
         }).RequireAuthorization(policy => policy.RequireRole("Admin"));
     }
 }
-public class AdminLog { }

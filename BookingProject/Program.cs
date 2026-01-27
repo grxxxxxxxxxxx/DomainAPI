@@ -4,10 +4,10 @@ using BookingProject.Data;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using BookingProject.Endpoint.Auth;
-using BookingProject.Endpoint.AuthAdmin;
 using BookingProject.Endpoint.Booking;
 using BookingProject.Endpoint.GetInfo;
 using BookingProject.Endpoint.Rooms;
+using BookingProject.Services;
 using FluentValidation;
 using Serilog;
 using Serilog.Events;
@@ -27,9 +27,17 @@ builder.Services.AddDbContext<AppDbContext>(x =>
     x.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddValidatorsFromAssemblyContaining<Program>();
 
+
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+
+
+builder.Services.AddScoped<IUserService , UserService>();
+builder.Services.AddScoped<ILoginService, LoginService>();
+builder.Services.AddScoped<IOrderService, OrderService>();
+builder.Services.AddScoped<IDomainService, DomainService>();
 
 var jwtSettings = builder.Configuration.GetSection("Jwt");
 var key = Encoding.UTF8.GetBytes(jwtSettings["Key"]!);
@@ -52,18 +60,16 @@ var app = builder.Build();
 
 app.UseAuthentication();
 app.UseAuthorization();
-app.CreateUser();    
-app.UpdateUser();    
-app.DeleteUser();
-app.CreateAdmin();
-app.PutAdmin();
-app.DeleteAdmin();
+
+app.MapAuthUserEndpoint();
+app.MapAuthAdminEndpoint();
+
 app.UserLogin();
 app.GetUser();
-app.BookingGet();
-app.BookingEndpoint();
-app.GetRoom();
-app.RoomEndpoint();
+app.OrderGet();
+app.OrderEndpoint();
+app.GetDomain();
+app.DomainEndpoint();
 
 app.UseSwagger();
 app.UseSwaggerUI();

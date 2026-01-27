@@ -22,47 +22,11 @@ namespace BookingProject.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("BookingProject.Models.Booking", b =>
+            modelBuilder.Entity("BookingProject.Models.Domain", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
-
-                    b.Property<DateTime>("CheckInDate")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<DateTime>("CheckOutDate")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<Guid>("RoomId")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("RoomId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Bookings");
-                });
-
-            modelBuilder.Entity("BookingProject.Models.Room", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("Class")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("text");
 
                     b.Property<DateTime>("IsCreated")
                         .HasColumnType("timestamp with time zone");
@@ -73,9 +37,42 @@ namespace BookingProject.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("numeric");
 
+                    b.Property<string>("TDL")
+                        .HasColumnType("text");
+
                     b.HasKey("Id");
 
-                    b.ToTable("Rooms");
+                    b.ToTable("Domains");
+                });
+
+            modelBuilder.Entity("BookingProject.Models.Order", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<Guid>("DomainId")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("ExpiresDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DomainId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("BookingProject.Models.User", b =>
@@ -110,33 +107,33 @@ namespace BookingProject.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("BookingProject.Models.Booking", b =>
+            modelBuilder.Entity("BookingProject.Models.Order", b =>
                 {
-                    b.HasOne("BookingProject.Models.Room", "Room")
-                        .WithMany("Bookings")
-                        .HasForeignKey("RoomId")
+                    b.HasOne("BookingProject.Models.Domain", "Domain")
+                        .WithMany("Orders")
+                        .HasForeignKey("DomainId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("BookingProject.Models.User", "User")
-                        .WithMany("Bookings")
+                        .WithMany("Orders")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Room");
+                    b.Navigation("Domain");
 
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("BookingProject.Models.Room", b =>
+            modelBuilder.Entity("BookingProject.Models.Domain", b =>
                 {
-                    b.Navigation("Bookings");
+                    b.Navigation("Orders");
                 });
 
             modelBuilder.Entity("BookingProject.Models.User", b =>
                 {
-                    b.Navigation("Bookings");
+                    b.Navigation("Orders");
                 });
 #pragma warning restore 612, 618
         }

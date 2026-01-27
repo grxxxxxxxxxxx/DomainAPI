@@ -4229,11 +4229,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/grxxx/RiderProjects/BookingProject/BookingProject/BookingProject.csproj",
+      "projectUniqueName": "/Users/grxxx/RiderProjects/DomainProject/BookingProject/BookingProject.csproj",
       "projectName": "BookingProject",
-      "projectPath": "/Users/grxxx/RiderProjects/BookingProject/BookingProject/BookingProject.csproj",
+      "projectPath": "/Users/grxxx/RiderProjects/DomainProject/BookingProject/BookingProject.csproj",
       "packagesPath": "/Users/grxxx/.nuget/packages/",
-      "outputPath": "/Users/grxxx/RiderProjects/BookingProject/BookingProject/obj/",
+      "outputPath": "/Users/grxxx/RiderProjects/DomainProject/BookingProject/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/grxxx/.nuget/NuGet/NuGet.Config"

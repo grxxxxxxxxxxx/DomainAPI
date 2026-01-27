@@ -1,21 +1,23 @@
 using FluentValidation;
 using BookingProject.Models;
+using BookingProject.DTOs;
 
 namespace BookingProject.FluentValidation;
 
-public class UserValid : AbstractValidator<User>
+public class RegisterDtoValidator : AbstractValidator<UsersDto>
 {
-    public UserValid()
+    public RegisterDtoValidator()
     {
         RuleFor(x => x.Name)
             .NotNull()
-            .Must(x => !string.IsNullOrWhiteSpace(x))
+            .Must(x => !string.IsNullOrEmpty(x))
             .WithMessage("Invalid name")
             .MinimumLength(3).WithMessage("Short name")
             .MaximumLength(25).WithMessage("Long name");
 
         RuleFor(x => x.Email)
             .NotNull()
+            .NotEmpty()
             .Must(x => !string.IsNullOrWhiteSpace(x))
             .WithMessage("Invalid email")
             .EmailAddress()

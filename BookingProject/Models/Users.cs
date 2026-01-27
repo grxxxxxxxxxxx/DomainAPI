@@ -10,5 +10,5 @@ public class User
     public DateTime IsCreate { get; set; } = DateTime.UtcNow;
     public bool IsActive { get; set; } = true;
     public string? Role { get; set; }
-    public List<Booking> Bookings { get; set; } = new();
+    public List<Order> Orders { get; set; } = new();
 }

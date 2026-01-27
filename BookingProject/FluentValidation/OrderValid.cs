@@ -1,41 +1,42 @@
 using BookingProject.Models;
 using FluentValidation;
+using BookingProject.DTOs;
 
 namespace BookingProject.FluentValidation;
 
-public class BookingValid : AbstractValidator<Booking>
+public class OrderValid : AbstractValidator<OrderDto>
 {
-    public BookingValid()
+    public OrderValid()
     {
-        RuleFor(x => x.CheckInDate)
+        RuleFor(x => x.StartData)
             .NotEmpty()
             .WithMessage("Check-in date is required")
             
             .GreaterThan(DateTime.Today)
             .WithMessage("The check-in date must be in the future")
             
-            .LessThan(x => x.CheckOutDate)
+            .LessThan(x => x.ExpiresData)
             .WithMessage("The check-in date must be before the check-out date");
         
-        RuleFor(x => x.CheckOutDate)
+        RuleFor(x => x.ExpiresData)
             .NotEmpty()
             .WithMessage("Departure date is required")
             
-            .GreaterThan(x => x.CheckInDate)
+            .GreaterThan(x => x.StartData)
             .WithMessage("The check-out date must be later than the check-in date")
             
-            .LessThan(x => x.CheckInDate.AddMonths(3))
-            .WithMessage("The maximum booking duration is 3 months.");
+            .LessThan(x => x.StartData.AddMonths(12))
+            .WithMessage("The maximum order duration is 12 months.");
         
         // Проверка минимальной длительности
         RuleFor(x => x)
-            .Must(booking => 
-                (booking.CheckOutDate - booking.CheckInDate).TotalDays >= 1)
-            .WithMessage("Minimum booking: 1 day")
+            .Must(order => 
+                (order.ExpiresData - order.StartData).TotalDays >= 30)
+            .WithMessage("Minimum order: 30 days")
             
-            .Must(booking =>
-                (booking.CheckOutDate - booking.CheckInDate).TotalDays <= 30)
-            .WithMessage("Maximum booking period is 30 days");
+            .Must(order =>
+                (order.ExpiresData - order.StartData).TotalDays <= 365)
+            .WithMessage("Maximum order period is 365 days");
 
     }
 }

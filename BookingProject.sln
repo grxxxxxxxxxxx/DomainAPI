@@ -5,9 +5,11 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{59519040-F700-4499-9D49-17DE757F3FA7}"
 	ProjectSection(SolutionItems) = preProject
 		compose.yaml = compose.yaml
+		Dockerfile = Dockerfile
+		.dockerignore = .dockerignore
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookingTests", "BookingTests\BookingTests.csproj", "{EF78FDE6-46C2-4B2A-9ECA-BFC6DC7C723A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DomainsTests", "DomainsTests\DomainsTests.csproj", "{EF78FDE6-46C2-4B2A-9ECA-BFC6DC7C723A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
