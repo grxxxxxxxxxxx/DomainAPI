@@ -1,0 +1,5 @@
+2026-01-25 22:52:35.306 -08:00 [INF] User create process -> transactxofficial@gmail.com
+2026-01-25 22:52:36.346 -08:00 [INF] Successful user creation -> transactxofficial@gmail.com
+2026-01-25 22:53:42.701 -08:00 [INF] Login attempt transactxofficial@gmail.com
+2026-01-25 22:53:42.974 -08:00 [INF] Create JWT transactxofficial@gmail.com
+2026-01-25 22:53:42.991 -08:00 [INF] Successful login transactxofficial@gmail.com

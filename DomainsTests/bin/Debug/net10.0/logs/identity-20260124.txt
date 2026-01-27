@@ -1,0 +1,16 @@
+2026-01-24 22:16:42.130 -08:00 [INF] User create process -> test81303@example.com
+2026-01-24 22:16:42.147 -08:00 [WRN] Invalid user data -> test81303@example.com
+2026-01-24 22:19:23.156 -08:00 [INF] User create process -> test46115@example.com
+2026-01-24 22:19:23.909 -08:00 [INF] Successful user creation -> test46115@example.com
+2026-01-24 22:49:50.042 -08:00 [INF] User create process -> test16393@example.com
+2026-01-24 22:49:50.735 -08:00 [INF] Successful user creation -> test16393@example.com
+2026-01-24 22:49:50.750 -08:00 [INF] Login attempt test45476@example.com
+2026-01-24 22:49:50.757 -08:00 [WRN] User not found test45476@example.com
+2026-01-24 22:51:01.968 -08:00 [INF] User create process -> test5103@example.com
+2026-01-24 22:51:02.644 -08:00 [INF] Successful user creation -> test5103@example.com
+2026-01-24 22:51:02.659 -08:00 [INF] Login attempt test79310@example.com
+2026-01-24 22:51:02.688 -08:00 [WRN] User not found test79310@example.com
+2026-01-24 22:51:50.553 -08:00 [INF] User create process -> test8002@example.com
+2026-01-24 22:51:51.226 -08:00 [INF] Successful user creation -> test8002@example.com
+2026-01-24 22:51:51.240 -08:00 [INF] Login attempt elgyugdrvdsbv@gmail.com
+2026-01-24 22:51:51.247 -08:00 [WRN] User not found elgyugdrvdsbv@gmail.com
