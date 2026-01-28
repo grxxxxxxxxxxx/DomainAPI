@@ -13,7 +13,7 @@ services:
     ports:
       - "5432:5432"
     networks:
-      - booking-network
+      - booking-network 
     restart: unless-stopped
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U grxxx -d booking_database"]
@@ -38,6 +38,24 @@ services:
     restart: unless-stopped
     networks:
       - booking-network
+
+  tests:
+    image: mcr.microsoft.com/dotnet/sdk:10.0
+    container_name: booking_tests
+    working_dir: /app
+    volumes:
+      - ./DomainsTests:/app
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Test
+      - ConnectionStrings__DefaultConnection=Host=postgres;Port=5432;Database=booking_database;Username=grxxx;Password=Grxxxerror402
+    depends_on:
+      postgres:
+        condition: service_healthy
+      bookingproject:
+        condition: service_started
+    networks:
+      - booking-network
+    command: ["dotnet", "test", "--logger:trx"]
 
 networks:
   booking-network:

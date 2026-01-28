@@ -1,6 +1,9 @@
 using System.Net;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Xunit;
+using System.Net.Http;
+using System.Threading.Tasks;
+using System;
 
 namespace BookingTests.EndpointAdminTests;
 
@@ -16,8 +19,7 @@ public class AuthControllerTest : IClassFixture<WebApplicationFactory<Program>>
     [Fact]
     public async Task Register_User_ReturnCreated()
     {
-        var random = new Random();
-        var uniqueEmail = $"test{random.Next(100000)}@example.com";
+        var uniqueEmail = $"test{Guid.NewGuid():N}@example.com";
 
         var registerData = new
         {
@@ -34,8 +36,7 @@ public class AuthControllerTest : IClassFixture<WebApplicationFactory<Program>>
     [Fact]
     public async Task Login_User_ReturnOk()
     {
-        var random = new Random();
-        var uniqueEmail = $"test{random.Next(100000)}@example.com";
+        var uniqueEmail = $"test{Guid.NewGuid():N}@example.com";
 
         var registerData = new
         {
@@ -44,15 +45,14 @@ public class AuthControllerTest : IClassFixture<WebApplicationFactory<Program>>
             Password = "Testsdkfh9898h32$Hbsd",
             Phone = "+79159086211"
         };
+
+        var responseReg = await _httpClient.PostAsJsonAsync("/api/register", registerData);
         
         var loginData = new
         {
             Email = uniqueEmail,
             Password = "Testsdkfh9898h32$Hbsd"
         };
-
-        var responseRegitser = await _httpClient.PostAsJsonAsync("/api/register", registerData);
-        Assert.Equal(HttpStatusCode.Created , responseRegitser.StatusCode);
 
         var response = await _httpClient.PostAsJsonAsync("/api/login", loginData);
         Assert.Equal(HttpStatusCode.OK , response.StatusCode);

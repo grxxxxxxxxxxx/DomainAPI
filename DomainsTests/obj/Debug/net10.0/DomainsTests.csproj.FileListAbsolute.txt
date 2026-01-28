@@ -476,3 +476,12 @@
 /Users/grxxx/RiderProjects/DomainProject/DomainsTests/obj/Debug/net10.0/DomainsTests.pdb
 /Users/grxxx/RiderProjects/DomainProject/DomainsTests/obj/Debug/net10.0/DomainsTests.genruntimeconfig.cache
 /Users/grxxx/RiderProjects/DomainProject/DomainsTests/obj/Debug/net10.0/ref/DomainsTests.dll
+/app/obj/Debug/net10.0/DomainsTests.csproj.AssemblyReference.cache
+/app/obj/Debug/net10.0/MvcTestingAppManifest.json
+/app/obj/Debug/net10.0/DomainsTests.GeneratedMSBuildEditorConfig.editorconfig
+/app/obj/Debug/net10.0/DomainsTests.AssemblyInfoInputs.cache
+/app/obj/Debug/net10.0/DomainsTests.AssemblyInfo.cs
+/app/obj/Debug/net10.0/DomainsTests.csproj.CoreCompileInputs.cache
+/app/obj/Debug/net10.0/DomainsTests.dll
+/app/obj/Debug/net10.0/refint/DomainsTests.dll
+/app/obj/Debug/net10.0/DomainsTests.pdb
