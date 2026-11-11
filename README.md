@@ -1,5 +1,4 @@
-```text
-                   
+```             
 ```
 DomainAPI - This is a REST API for domain name rentals, which is based on a Minimal API for development speed.
 The following technology stack is used within this API ->
