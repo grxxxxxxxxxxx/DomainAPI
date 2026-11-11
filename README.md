@@ -1,21 +1,5 @@
 ```text
-$$$$$$$\             $$$$$$\            $$\                         
-$$  __$$\           $$$ __$$\           $$ |                        
-$$ |  $$ | $$$$$$\  $$$$\ $$ | $$$$$$\  $$ | $$$$$$\                
-$$$$$$$  |$$  __$$\ $$\$$\$$ |$$  __$$\ $$ |$$  __$$\               
-$$  ____/ $$$$$$$$ |$$ \$$$$ |$$ /  $$ |$$ |$$$$$$$$ |              
-$$ |      $$   ____|$$ |\$$$ |$$ |  $$ |$$ |$$   ____|       
-$$ |      \$$$$$$$\ \$$$$$$  /$$$$$$$  |$$ |\$$$$$$$\   
-\__|       \_______| \______/ $$  ____/ \__| \_______|      $$$$$$\ 
-                              $$ |                          \______|
-                              $$ |                                  
-                              \__|
-
-
-< Projects of this author are open for use by anyone for any purpose. >
-
-This <api> has many disadvantages and vulnerabilities, and therefore does not claim to be a #finished product.
---> Author is also open to your pull request in order to improve the project. <--                      
+                   
 ```
 DomainAPI - This is a REST API for domain name rentals, which is based on a Minimal API for development speed.
 The following technology stack is used within this API ->
